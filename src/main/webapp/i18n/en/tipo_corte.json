@@ -1,0 +1,11 @@
+{
+    "peluqueriaApp": {
+        "Tipo_corte" : {
+            "null": "",
+            "Corte": "Corte",
+            "Alisado": "Alisado",
+            "Peinado": "Peinado",
+            "Keratina": "Keratina"
+        }
+    }
+}

@@ -1,0 +1,88 @@
+
+<div>
+    <h2><span data-translate="peluqueriaApp.cliente.detail.title">Cliente</span> {{vm.cliente.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <uib-tabset active="activeJustified" justified="true">
+     	<uib-tab index="0" heading="Datos Personales">
+     		<div style="margin-top: 15px;" class="well">
+			    <dl class="dl-horizontal jh-entity-details">
+			        <dt><span data-translate="peluqueriaApp.cliente.nombre">Nombre</span></dt>
+			        <dd>
+			            <span>{{vm.cliente.nombre}}</span>
+			        </dd>
+			        <dt><span data-translate="peluqueriaApp.cliente.apellido">Apellido</span></dt>
+			        <dd>
+			            <span>{{vm.cliente.apellido}}</span>
+			        </dd>
+			        <dt><span data-translate="peluqueriaApp.cliente.fecha_nacimiento">Fecha Nacimiento</span></dt>
+			        <dd>
+			            <span>{{vm.cliente.fecha_nacimiento | date:'mediumDate'}}</span>
+			        </dd>
+			        <dt><span data-translate="peluqueriaApp.cliente.celular">Celular</span></dt>
+			        <dd>
+			            <span>{{vm.cliente.celular}}</span>
+			        </dd>
+			        <dt><span data-translate="peluqueriaApp.cliente.direccion">Direccion</span></dt>
+			        <dd>
+			            <span>{{vm.cliente.direccion}}</span>
+			        </dd>
+			        <dt><span data-translate="peluqueriaApp.cliente.observacion">Observacion</span></dt>
+			        <dd>
+			            <span>{{vm.cliente.observacion}}</span>
+			        </dd>
+			    </dl>
+			</div>
+    	</uib-tab> 
+    	<uib-tab index="2" heading="Cortes">
+		   	<div style="margin-top: 15px;">
+		
+				<div ng-form="corteForm_{{$index}}"
+					ng-repeat="corte in vm.cliente.cortes track by $index">
+					<div class="well">
+						<div class="row">
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label class="control-label"
+										translate="peluqueriaApp.cliente.fecha" for="field_fecha">Fecha</label>
+									<input type="text" class="form-control" name="Fecha"
+										id="field_fecha" ng-model="corte.fecha" readonly />
+								</div>
+								<div class="form-group col-md-4">
+									<label class="control-label"
+										translate="peluqueriaApp.cliente.precio" for="field_precio">Precio</label>
+									<input type="text" class="form-control" name="precio"
+										id="field_precio" ng-model="corte.precio" readonly/>
+								</div>
+								<div class="form-group col-md-4">
+									<label class="control-label"
+										translate="peluqueriaApp.cliente.tipo_corte" for="field_tipo_corte">Tipo Corte</label>
+									<input type="text" class="form-control" name="tipo_corte"
+										id="field_tipo_corte" ng-model="corte.tipo_corte" readonly />
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label class="control-label"
+										translate="peluqueriaApp.cliente.detalle" for="field_detalle">Detalle</label>
+									<textarea type="textarea" class="form-control" name="detalle"
+										id="field_detalle" ng-model="corte.detalle" readonly/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+    	</uib-tab> 
+	</uib-tabset>
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="cliente-detail.edit({id:vm.cliente.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

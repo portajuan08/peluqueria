@@ -1,0 +1,33 @@
+{
+    "peluqueriaApp": {
+        "cliente" : {
+            "home": {
+                "title": "Clientes",
+                "createLabel": "Crear nuevo Cliente",
+                "createOrEditLabel": "Crear o editar Cliente",
+                "search": "Search for Cliente"
+            },
+            "created": "Un nuevo Cliente ha sido creado con el identificador {{ param }}",
+            "updated": "Un Cliente ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Cliente ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Cliente {{ id }}?"
+            },
+            "detail": {
+                "title": "Cliente"
+            },
+            "nombre": "Nombre",
+            "apellido": "Apellido",
+            "fecha_nacimiento": "Fecha Nacimiento",
+            "celular": "Celular",
+            "direccion": "Direccion",
+            "observacion": "Observacion",
+            "corte": "Corte",
+            "fecha": "Fecha",
+            "precio": "Precio",
+            "tipo_corte": "Tipo Corte",
+            "detalle": "Detalle",
+            "cortes": "Cortes"
+        }
+    }
+}

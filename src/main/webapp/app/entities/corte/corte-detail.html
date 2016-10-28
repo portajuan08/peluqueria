@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="peluqueriaApp.corte.detail.title">Corte</span> {{vm.corte.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="peluqueriaApp.corte.fecha">Fecha</span></dt>
+        <dd>
+            <span>{{vm.corte.fecha | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="peluqueriaApp.corte.precio">Precio</span></dt>
+        <dd>
+            <span>{{vm.corte.precio}}</span>
+        </dd>
+        <dt><span data-translate="peluqueriaApp.corte.tipo_corte">Tipo Corte</span></dt>
+        <dd>
+            <span data-translate="{{'peluqueriaApp.Tipo_corte.' + vm.corte.tipo_corte}}">{{vm.corte.tipo_corte}}</span>
+        </dd>
+        <dt><span data-translate="peluqueriaApp.corte.detalle">Detalle</span></dt>
+        <dd>
+            <span>{{vm.corte.detalle}}</span>
+        </dd>
+        <dt><span data-translate="peluqueriaApp.corte.cliente">Cliente</span></dt>
+        <dd>
+            <a ui-sref="cliente-detail({id:vm.corte.cliente.id})">{{vm.corte.cliente.nombre}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="corte-detail.edit({id:vm.corte.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "cliente",
+            "otherEntityName": "cliente",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "nombre"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "fecha",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "precio",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "tipo_corte",
+            "fieldType": "Tipo_corte",
+            "fieldValues": "Corte,Alisado,Peinado,Keratina",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "detalle",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20161025224441",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "corte",
+    "pagination": "pagination"
+}

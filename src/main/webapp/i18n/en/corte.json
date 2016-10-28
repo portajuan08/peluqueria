@@ -1,0 +1,26 @@
+{
+    "peluqueriaApp": {
+        "corte" : {
+            "home": {
+                "title": "Cortes",
+                "createLabel": "Create a new Corte",
+                "createOrEditLabel": "Create or edit a Corte",
+                "search": "Search for Corte"
+            },
+            "created": "A new Corte is created with identifier {{ param }}",
+            "updated": "A Corte is updated with identifier {{ param }}",
+            "deleted": "A Corte is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Corte {{ id }}?"
+            },
+            "detail": {
+                "title": "Corte"
+            },
+            "fecha": "Fecha",
+            "precio": "Precio",
+            "tipo_corte": "Tipo Corte",
+            "detalle": "Detalle",
+            "cliente": "Cliente"
+        }
+    }
+}
