@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # peluqueria
 
 This application was generated using JHipster 3.9.1, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v3.9.1](https://jhipster.github.io/documentation-archive/v3.9.1).
@@ -108,3 +109,6 @@ To set up a CI environment, consult the [Setting up Continuous Integration][] pa
 [Karma]: http://karma-runner.github.io/
 [Jasmine]: http://jasmine.github.io/2.0/introduction.html
 [Protractor]: https://angular.github.io/protractor/
+=======
+# peluqueria
+>>>>>>> 42c6dc62e190e1af105b6b2a62ecab4448721f56
