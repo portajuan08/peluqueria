@@ -9,6 +9,7 @@
                 "main": "Entidades",
                 "cliente": "Clientes",
                 "corte": "Agenda",
+                "recaudacion": "Recaudacion",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

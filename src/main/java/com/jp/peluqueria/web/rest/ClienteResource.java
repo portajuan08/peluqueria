@@ -1,12 +1,15 @@
 package com.jp.peluqueria.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import com.jp.peluqueria.domain.Cliente;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
-import com.jp.peluqueria.repository.ClienteRepository;
-import com.jp.peluqueria.repository.search.ClienteSearchRepository;
-import com.jp.peluqueria.web.rest.util.HeaderUtil;
-import com.jp.peluqueria.web.rest.util.PaginationUtil;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
+
+import javax.inject.Inject;
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -15,18 +18,21 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import com.codahale.metrics.annotation.Timed;
+import com.jp.peluqueria.domain.Cliente;
+import com.jp.peluqueria.domain.ClienteDTO;
+import com.jp.peluqueria.domain.util.UtilCliente;
+import com.jp.peluqueria.repository.ClienteRepository;
+import com.jp.peluqueria.repository.search.ClienteSearchRepository;
+import com.jp.peluqueria.web.rest.util.HeaderUtil;
+import com.jp.peluqueria.web.rest.util.PaginationUtil;
 
 /**
  * REST controller for managing Cliente.
@@ -120,11 +126,13 @@ public class ClienteResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Cliente> getCliente(@PathVariable Long id) {
+    public ResponseEntity<ClienteDTO> getCliente(@PathVariable Long id) {
         log.debug("REST request to get Cliente : {}", id);
         Cliente cliente = clienteRepository.findOne(id);
         System.out.println("clientes tamañpo => " + cliente.getCortes().size());
-        return Optional.ofNullable(cliente)
+        ClienteDTO clienteDTO = UtilCliente.getClienteDTO(cliente);
+        System.out.println("clientes DTO tamañpo => " + clienteDTO.getCortes().size());
+        return Optional.ofNullable(clienteDTO)
             .map(result -> new ResponseEntity<>(
                 result,
                 HttpStatus.OK))

@@ -15,7 +15,6 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        vm.confirmDelete = confirmDelete;
         vm.clientes = Cliente.query();
 
         $timeout(function (){
@@ -51,13 +50,13 @@
             vm.datePickerOpenStatus[date] = true;
         }
         
-        function confirmDelete () {
+        $scope.confirmDelete = function() {
         	vm.isSaving = true;
             Corte.delete({id: vm.corte.id},
                 function () {
                     $uibModalInstance.close(true);
                     vm.isSaving = false;
                 });
-        }
+        };
     }
 })();

@@ -13,26 +13,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jp.peluqueria.domain.enumeration.Tipo_corte;
 
 /**
  * A Corte.
  */
 @Entity
-@Table(name = "corte")
-@Document(indexName = "corte")
-@NamedQueries({
-	@NamedQuery(name = "Corte.findByFechas", query = "SELECT c FROM Corte c WHERE LOWER(c.fecha) >= LOWER(?1) and LOWER(c.fecha) <= LOWER(?2)"),
-	@NamedQuery(name = "Corte.findByDesdeFecha", query = "SELECT c FROM Corte c WHERE LOWER(c.fecha) >= LOWER(?1)")
-})
-public class Corte implements Serializable {
+@Table(name = "corteDTO")
+@Document(indexName = "corteDTO")
+public class CorteDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -57,7 +52,8 @@ public class Corte implements Serializable {
 
     @ManyToOne
     @NotNull
-    private Cliente cliente;
+    @JsonIgnore
+    private ClienteDTO clienteDTO;
 
     public Long getId() {
         return id;
@@ -71,7 +67,7 @@ public class Corte implements Serializable {
         return fecha;
     }
 
-    public Corte fecha(ZonedDateTime fecha) {
+    public CorteDTO fecha(ZonedDateTime fecha) {
         this.fecha = fecha;
         return this;
     }
@@ -84,7 +80,7 @@ public class Corte implements Serializable {
         return precio;
     }
 
-    public Corte precio(BigDecimal precio) {
+    public CorteDTO precio(BigDecimal precio) {
         this.precio = precio;
         return this;
     }
@@ -97,7 +93,7 @@ public class Corte implements Serializable {
         return tipo_corte;
     }
 
-    public Corte tipo_corte(Tipo_corte tipo_corte) {
+    public CorteDTO tipo_corte(Tipo_corte tipo_corte) {
         this.tipo_corte = tipo_corte;
         return this;
     }
@@ -110,7 +106,7 @@ public class Corte implements Serializable {
         return detalle;
     }
 
-    public Corte detalle(String detalle) {
+    public CorteDTO detalle(String detalle) {
         this.detalle = detalle;
         return this;
     }
@@ -119,17 +115,17 @@ public class Corte implements Serializable {
         this.detalle = detalle;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public ClienteDTO getClienteDTO() {
+        return clienteDTO;
     }
 
-    public Corte cliente(Cliente cliente) {
-        this.cliente = cliente;
+    public CorteDTO clienteDTO(ClienteDTO cliente) {
+        this.clienteDTO = cliente;
         return this;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setClienteDTO(ClienteDTO cliente) {
+        this.clienteDTO = cliente;
     }
 
     @Override
@@ -140,7 +136,7 @@ public class Corte implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Corte corte = (Corte) o;
+        CorteDTO corte = (CorteDTO) o;
         if(corte.id == null || id == null) {
             return false;
         }

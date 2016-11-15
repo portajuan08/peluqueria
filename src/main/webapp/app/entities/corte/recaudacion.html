@@ -1,0 +1,78 @@
+<div>
+    <h2 data-translate="peluqueriaApp.corte.home.title">Cortes</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-16 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="well">
+                    	<div class="row">
+							<div class="form-group col-md-4">
+					            <label class="control-label" data-translate="peluqueriaApp.corte.fecha_desde" for="field_fecha_desde">Fecha Desde</label>
+					                <div class="input-group">
+					                    <input id="field_fecha_desde" type="text" class="form-control" name="fecha_desde" uib-datepicker-popup="{{dateformat}}" ng-model="vm.fecha_desde" is-open="vm.datePickerOpenStatus.fecha_desde"
+					                    required/>
+					                    <span class="input-group-btn">
+					                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fecha_desde')"><i class="glyphicon glyphicon-calendar"></i></button>
+					                    </span>
+					                </div>
+					        </div>
+					        
+					        <div class="form-group col-md-4">
+					            <label class="control-label" data-translate="peluqueriaApp.corte.fecha_hasta" for="field_fecha_hasta">Fecha Hasta</label>
+					                <div class="input-group">
+					                    <input id="field_fecha_hasta" type="text" class="form-control" name="fecha_hasta" uib-datepicker-popup="{{dateformat}}" ng-model="vm.fecha_hasta" is-open="vm.datePickerOpenStatus.fecha_hasta"
+					                    required/>
+					                    <span class="input-group-btn">
+					                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fecha_hasta')"><i class="glyphicon glyphicon-calendar"></i></button>
+					                    </span>
+					                </div>
+					        </div>
+					        
+					        <div class="form-group col-md-4">
+					            <label class="control-label" data-translate="peluqueriaApp.corte.tipo_corte" for="field_tipo_corte">Tipo Corte</label>
+					            <select class="form-control" name="tipo_corte" ng-model="vm.tipo_corte" id="field_tipo_corte" required>
+					                <option value="Corte" data-translate="peluqueriaApp.Tipo_corte.Corte">Corte</option>
+					                <option value="Alisado" data-translate="peluqueriaApp.Tipo_corte.Alisado">Alisado</option>
+					                <option value="Peinado" data-translate="peluqueriaApp.Tipo_corte.Peinado">Peinado</option>
+					                <option value="Keratina" data-translate="peluqueriaApp.Tipo_corte.Keratina">Keratina</option>
+					            </select>
+							</div>
+							
+							<div class="form-group col-md-4">
+									<button class="btn btn-info" ng-click="vm.search(vm.fecha_desde,vm.fecha_hasta,vm.tipo_corte)">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+					        </div>
+                    	</div>    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="fecha"><span data-translate="peluqueriaApp.corte.fecha">Fecha</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tipo_corte"><span data-translate="peluqueriaApp.corte.tipo_corte">Tipo Corte</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="precio"><span data-translate="peluqueriaApp.corte.precio">Precio</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="detalle"><span data-translate="peluqueriaApp.corte.detalle">Detalle</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cliente.apellido"><span data-translate="peluqueriaApp.corte.cliente">Cliente</span> <span class="glyphicon glyphicon-sort"></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="corte in vm.cortes track by corte.id">
+                    <td>{{corte.fecha | date:'medium'}}</td>
+                    <td data-translate="{{'peluqueriaApp.Tipo_corte.' + corte.tipo_corte}}">{{corte.tipo_corte}}</td>
+                    <td>{{corte.precio}}</td>
+                    <td>{{corte.detalle}}</td>
+                    <td>
+                        <a ui-sref="cliente-detail({id:corte.cliente.id})">{{corte.cliente.apellido}}</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

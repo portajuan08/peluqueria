@@ -11,7 +11,7 @@
         $stateProvider
         .state('corte', {
             parent: 'entity',
-            url: '/corte?page&sort&search',
+            url: '/corte',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'peluqueriaApp.corte.home.title'
@@ -23,25 +23,41 @@
                     controllerAs: 'vm'
                 }
             },
+            params: { },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('corte');
+                    $translatePartialLoader.addPart('tipo_corte');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
+            }
+        })
+        .state('recaudacion', {
+            parent: 'entity',
+            url: '/recaudacion',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'peluqueriaApp.corte.home.title'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/corte/recaudacion.html',
+                    controller: 'RecaudacionController',
+                    controllerAs: 'vm'
+                }
+            },
             params: {
-                page: {
-                    value: '1',
-                    squash: true
-                },
-                sort: {
-                    value: 'id,asc',
-                    squash: true
-                },
-                search: null
+                fecha_desde : new Date(),
+                fecha_hasta : new Date(),
+                tipo_corte : "Alisado"
             },
             resolve: {
-                pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
+                searchParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
                     return {
-                        page: PaginationUtil.parsePage($stateParams.page),
-                        sort: $stateParams.sort,
-                        predicate: PaginationUtil.parsePredicate($stateParams.sort),
-                        ascending: PaginationUtil.parseAscending($stateParams.sort),
-                        search: $stateParams.search
+                        tipo_corte : $stateParams.tipo_corte,
+                        fecha_desde : $stateParams.fecha_desde,
+                        fecha_hasta : $stateParams.fecha_hasta
                     };
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
@@ -126,7 +142,7 @@
                     resolve: {
                         entity: function () {
                             return {
-                                fecha: null,
+                                fecha: $stateParams.fecha,
                                 precio: null,
                                 tipo_corte: null,
                                 detalle: null,

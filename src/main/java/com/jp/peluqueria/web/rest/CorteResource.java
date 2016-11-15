@@ -1,12 +1,16 @@
 package com.jp.peluqueria.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import com.jp.peluqueria.domain.Corte;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
-import com.jp.peluqueria.repository.CorteRepository;
-import com.jp.peluqueria.repository.search.CorteSearchRepository;
-import com.jp.peluqueria.web.rest.util.HeaderUtil;
-import com.jp.peluqueria.web.rest.util.PaginationUtil;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.sql.Date;
+import java.util.List;
+import java.util.Optional;
+
+import javax.inject.Inject;
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -15,18 +19,19 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import com.codahale.metrics.annotation.Timed;
+import com.jp.peluqueria.domain.Corte;
+import com.jp.peluqueria.repository.CorteRepository;
+import com.jp.peluqueria.repository.search.CorteSearchRepository;
+import com.jp.peluqueria.web.rest.util.HeaderUtil;
+import com.jp.peluqueria.web.rest.util.PaginationUtil;
 
 /**
  * REST controller for managing Corte.
@@ -55,8 +60,6 @@ public class CorteResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Corte> createCorte(@Valid @RequestBody Corte corte) throws URISyntaxException {
-    	System.out.println("entre a crear corte");
-    	System.out.println("el corte es => " + corte);
         log.debug("REST request to save Corte : {}", corte);
         if (corte.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("corte", "idexists", "A new corte cannot already have an ID")).body(null);
@@ -82,7 +85,6 @@ public class CorteResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Corte> updateCorte(@Valid @RequestBody Corte corte) throws URISyntaxException {
-    	System.out.println("entre a crear corte");
         log.debug("REST request to update Corte : {}", corte);
         if (corte.getId() == null) {
             return createCorte(corte);
@@ -105,14 +107,27 @@ public class CorteResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<Corte>> getAllCortes(Pageable pageable)
+    public ResponseEntity<List<Corte>> getAllCortes(@RequestParam("fecha") Long fecha)
         throws URISyntaxException {
-        log.debug("REST request to get a page of Cortes");
-        Page<Corte> page = corteRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/cortes");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+		Date oFechaDesde = new Date(fecha);
+		System.out.println("ofechaDesde => " + oFechaDesde);
+		List<Corte> cortes = corteRepository.findByDesdeFecha(oFechaDesde);
+		System.out.println("cant => " + cortes.size());
+        return new ResponseEntity<>(cortes, null, HttpStatus.OK);
     }
-
+    
+    @RequestMapping(value = "/recaudacion",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+        @Timed
+        public ResponseEntity<List<Corte>> getRecaudacion(@RequestParam("fechaDesde") Long fechaDesde, @RequestParam("fechaHasta") Long fechaHasta, @RequestParam("tipoCorte") String tipoCorte)
+            throws URISyntaxException {
+    		Date oFechaDesde = new Date(fechaDesde);
+    		Date oFechaHasta = new Date(fechaHasta);
+    		List<Corte> cortes = corteRepository.findByFechas(oFechaDesde,oFechaHasta);
+            return new ResponseEntity<>(cortes, null, HttpStatus.OK);
+        }
+    
     /**
      * GET  /cortes/:id : get the "id" corte.
      *

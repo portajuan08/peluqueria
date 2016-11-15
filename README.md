@@ -112,3 +112,4 @@ To set up a CI environment, consult the [Setting up Continuous Integration][] pa
 =======
 # peluqueria
 >>>>>>> 42c6dc62e190e1af105b6b2a62ecab4448721f56
+# peluqueria

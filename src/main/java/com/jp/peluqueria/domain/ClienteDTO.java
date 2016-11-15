@@ -18,15 +18,13 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 /**
  * A Cliente.
  */
 @Entity
-@Table(name = "cliente")
-@Document(indexName = "cliente")
-public class Cliente implements Serializable {
+@Table(name = "clienteDTO")
+@Document(indexName = "clienteDTO")
+public class ClienteDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -55,9 +53,8 @@ public class Cliente implements Serializable {
     @Column(name = "observacion")
     private String observacion;
 
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
-    @JsonIgnore
-    private Set<Corte> cortes = new HashSet<>();
+    @OneToMany(mappedBy = "clienteDTO", fetch = FetchType.EAGER)
+    private Set<CorteDTO> cortes = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -71,7 +68,7 @@ public class Cliente implements Serializable {
         return nombre;
     }
 
-    public Cliente nombre(String nombre) {
+    public ClienteDTO nombre(String nombre) {
         this.nombre = nombre;
         return this;
     }
@@ -84,7 +81,7 @@ public class Cliente implements Serializable {
         return apellido;
     }
 
-    public Cliente apellido(String apellido) {
+    public ClienteDTO apellido(String apellido) {
         this.apellido = apellido;
         return this;
     }
@@ -97,7 +94,7 @@ public class Cliente implements Serializable {
         return fecha_nacimiento;
     }
 
-    public Cliente fecha_nacimiento(LocalDate fecha_nacimiento) {
+    public ClienteDTO fecha_nacimiento(LocalDate fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
         return this;
     }
@@ -110,7 +107,7 @@ public class Cliente implements Serializable {
         return celular;
     }
 
-    public Cliente celular(String celular) {
+    public ClienteDTO celular(String celular) {
         this.celular = celular;
         return this;
     }
@@ -123,7 +120,7 @@ public class Cliente implements Serializable {
         return direccion;
     }
 
-    public Cliente direccion(String direccion) {
+    public ClienteDTO direccion(String direccion) {
         this.direccion = direccion;
         return this;
     }
@@ -136,7 +133,7 @@ public class Cliente implements Serializable {
         return observacion;
     }
 
-    public Cliente observacion(String observacion) {
+    public ClienteDTO observacion(String observacion) {
         this.observacion = observacion;
         return this;
     }
@@ -145,11 +142,11 @@ public class Cliente implements Serializable {
         this.observacion = observacion;
     }
 
-    public Set<Corte> getCortes() {
+    public Set<CorteDTO> getCortes() {
         return cortes;
     }
 
-    public void setCortes(Set<Corte> cortes) {
+    public void setCortes(Set<CorteDTO> cortes) {
         this.cortes = cortes;
     }
 
@@ -161,7 +158,7 @@ public class Cliente implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Cliente cliente = (Cliente) o;
+        ClienteDTO cliente = (ClienteDTO) o;
         if(cliente.id == null || id == null) {
             return false;
         }

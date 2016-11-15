@@ -2,25 +2,27 @@
     "peluqueriaApp": {
         "corte" : {
             "home": {
-                "title": "Cortes",
-                "createLabel": "Crear nuevo Corte",
-                "createOrEditLabel": "Crear o editar Corte",
-                "search": "Search for Corte"
+                "title": "Servicios",
+                "createLabel": "Agregar nuevo Servicio",
+                "createOrEditLabel": "Agregar o editar Servicio",
+                "search": "Search for Servicio"
             },
-            "created": "Un nuevo Corte ha sido creado con el identificador {{ param }}",
-            "updated": "Un Corte ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Corte ha sido eliminado con el identificador {{ param }}",
+            "created": "Un nuevo Servicio ha sido creado con el identificador {{ param }}",
+            "updated": "Un Servicio ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Servicio ha sido eliminado con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Corte {{ id }}?"
+                "question": "¿Seguro que quiere eliminar el servicio {{ id }}?"
             },
             "detail": {
-                "title": "Corte"
+                "title": "Servicio"
             },
             "fecha": "Fecha",
             "precio": "Precio",
-            "tipo_corte": "Tipo Corte",
+            "tipo_corte": "Tipo de Servicio",
             "detalle": "Detalle",
-            "cliente": "Cliente"
+            "cliente": "Cliente",
+            "fecha_desde": "Fecha desde",
+            "fecha_hasta": "Fecha hasta"
         }
     }
 }

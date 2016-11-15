@@ -53,7 +53,7 @@ public class CorteResourceIntTest {
     private static final BigDecimal DEFAULT_PRECIO = new BigDecimal(1);
     private static final BigDecimal UPDATED_PRECIO = new BigDecimal(2);
 
-    private static final Tipo_corte DEFAULT_TIPO_CORTE = Tipo_corte.Corte;
+    private static final Tipo_corte DEFAULT_TIPO_CORTE = Tipo_corte.Keratina;
     private static final Tipo_corte UPDATED_TIPO_CORTE = Tipo_corte.Alisado;
 
     private static final String DEFAULT_DETALLE = "AAAAA";

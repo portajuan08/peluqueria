@@ -22,12 +22,12 @@
             "celular": "Celular",
             "direccion": "Direccion",
             "observacion": "Observacion",
-            "corte": "Corte",
+            "servicio": "servicio",
             "fecha": "Fecha",
             "precio": "Precio",
-            "tipo_corte": "Tipo Corte",
+            "tipo_servicio": "Tipo de Servicio",
             "detalle": "Detalle",
-            "cortes": "Cortes"
+            "servicios": "Servicios"
         }
     }
 }
