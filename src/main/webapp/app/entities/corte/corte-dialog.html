@@ -42,10 +42,19 @@
         <div class="form-group">
             <label class="control-label" data-translate="peluqueriaApp.corte.tipo_corte" for="field_tipo_corte">Tipo Corte</label>
             <select class="form-control" name="tipo_corte" ng-model="vm.corte.tipo_corte" id="field_tipo_corte" required>
-                <option value="Corte" data-translate="peluqueriaApp.Tipo_corte.Corte">Corte</option>
                 <option value="Alisado" data-translate="peluqueriaApp.Tipo_corte.Alisado">Alisado</option>
-                <option value="Peinado" data-translate="peluqueriaApp.Tipo_corte.Peinado">Peinado</option>
                 <option value="Keratina" data-translate="peluqueriaApp.Tipo_corte.Keratina">Keratina</option>
+                <option value="CorteDama" data-translate="peluqueriaApp.Tipo_corte.CorteDama">Corte Dama</option>
+                <option value="CorteCaballero" data-translate="peluqueriaApp.Tipo_corte.CorteCaballero">Corte Caballero</option>
+                <option value="Calor" data-translate="peluqueriaApp.Tipo_corte.Calor">Calor</option>
+                <option value="Mechas" data-translate="peluqueriaApp.Tipo_corte.Mechas">Mechas</option>
+                <option value="Californianas" data-translate="peluqueriaApp.Tipo_corte.Californianas">Californianas</option>
+                <option value="Reflejos" data-translate="peluqueriaApp.Tipo_corte.Reflejos">Reflejos</option>
+                <option value="CalorYReflejos" data-translate="peluqueriaApp.Tipo_corte.CalorYReflejos">Calor y Reflejos</option>
+                <option value="CalorYMechas" data-translate="peluqueriaApp.Tipo_corte.CalorYMechas">CalorYMechas</option>
+                <option value="Brushing" data-translate="peluqueriaApp.Tipo_corte.Brushing">Brushing</option>
+                <option value="Bohox" data-translate="peluqueriaApp.Tipo_corte.Bohox">Bohox</option>
+                <option value="BanioCrema" data-translate="peluqueriaApp.Tipo_corte.BanioCrema">Banio de Crema</option>
             </select>
             <div ng-show="editForm.tipo_corte.$invalid">
                 <p class="help-block"
@@ -63,7 +72,7 @@
 
         <div class="form-group">
             <label data-translate="peluqueriaApp.corte.cliente" for="field_cliente">Cliente</label>
-            <select class="form-control" id="field_cliente" name="cliente" ng-model="vm.corte.cliente" ng-options="cliente as cliente.nombre for cliente in vm.clientes track by cliente.id" required>
+            <select class="form-control" id="field_cliente" name="cliente" ng-model="vm.corte.cliente" ng-options="cliente as cliente.nombre + vm.vacio + cliente.apellido for cliente in vm.clientes track by cliente.id" required>
                 <option value=""></option>
             </select>
         </div>

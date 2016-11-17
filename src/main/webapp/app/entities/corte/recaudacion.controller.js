@@ -17,6 +17,7 @@
         vm.fecha_desde = searchParams.fecha_desde;
         vm.fecha_hasta = searchParams.fecha_hasta;
         vm.tipo_corte = searchParams.tipo_corte;
+        vm.recaudacion_total = 0;
         
         getCortes();
 
@@ -38,6 +39,11 @@
 				
 			}).then(function(result) {
 				vm.cortes = result.data;
+				for(var i=0; i< vm.cortes.length; i++){
+					var corte = vm.cortes[i];
+					vm.recaudacion_total = vm.recaudacion_total + corte.precio;
+				}
+				
 			}, function(reason) {
 				AlertService.error(reason);
 			});

@@ -22,7 +22,8 @@
             "detalle": "Detalle",
             "cliente": "Cliente",
             "fecha_desde": "Fecha desde",
-            "fecha_hasta": "Fecha hasta"
+            "fecha_hasta": "Fecha hasta",
+            "total_recaudacion": "Total recaudado : <b>{{total}}</b>."
         }
     }
 }

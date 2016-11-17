@@ -4,7 +4,7 @@ import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 import com.jp.peluqueria.domain.Corte;
+import com.jp.peluqueria.domain.enumeration.Tipo_corte;
+import com.jp.peluqueria.domain.util.UtilFecha;
 import com.jp.peluqueria.repository.CorteRepository;
 import com.jp.peluqueria.repository.search.CorteSearchRepository;
 import com.jp.peluqueria.web.rest.util.HeaderUtil;
@@ -109,7 +111,7 @@ public class CorteResource {
     @Timed
     public ResponseEntity<List<Corte>> getAllCortes(@RequestParam("fecha") Long fecha)
         throws URISyntaxException {
-		Date oFechaDesde = new Date(fecha);
+		Timestamp oFechaDesde = UtilFecha.getFechaPrimerHora(fecha);
 		System.out.println("ofechaDesde => " + oFechaDesde);
 		List<Corte> cortes = corteRepository.findByDesdeFecha(oFechaDesde);
 		System.out.println("cant => " + cortes.size());
@@ -122,9 +124,17 @@ public class CorteResource {
         @Timed
         public ResponseEntity<List<Corte>> getRecaudacion(@RequestParam("fechaDesde") Long fechaDesde, @RequestParam("fechaHasta") Long fechaHasta, @RequestParam("tipoCorte") String tipoCorte)
             throws URISyntaxException {
-    		Date oFechaDesde = new Date(fechaDesde);
-    		Date oFechaHasta = new Date(fechaHasta);
-    		List<Corte> cortes = corteRepository.findByFechas(oFechaDesde,oFechaHasta);
+    		Timestamp oFechaDesde = UtilFecha.getFechaPrimerHora(fechaDesde);
+    		Timestamp oFechaHasta = UtilFecha.getFechaUltimaHora(fechaHasta);
+    		System.out.println("fecha desde => " + oFechaDesde);
+    		System.out.println("fecha hasta => " + oFechaHasta);
+    		System.out.println("tipoCorte => " + tipoCorte);
+    		
+    		List<Corte> cortes = null;
+    		if (Tipo_corte.Todos.equals(Tipo_corte.valueOf(tipoCorte)))
+    			cortes = corteRepository.findByFechas(oFechaDesde,oFechaHasta);
+    		else
+    			cortes = corteRepository.findByFechasTipoServicio(oFechaDesde,oFechaHasta,tipoCorte);
             return new ResponseEntity<>(cortes, null, HttpStatus.OK);
         }
     

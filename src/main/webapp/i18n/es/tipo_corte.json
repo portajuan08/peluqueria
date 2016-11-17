@@ -1,11 +1,23 @@
 {
     "peluqueriaApp": {
         "Tipo_corte" : {
-            "null": "",
+        	"null": "",
+        	"Todos":"Todos",
             "Corte": "Corte",
             "Alisado": "Alisado",
             "Peinado": "Peinado",
-            "Keratina": "Keratina"
+            "Keratina": "Keratina",
+            "CorteDama": "Corte de Dama",
+            "CorteCaballero": "Corte de Caballero",
+            "Calor": "Calor",
+            "Mechas": "Mechas",
+            "Californianas": "Californianas",
+            "Reflejos": "Reflejos",
+            "CalorYReflejos": "Calor y Reflejos",
+            "CalorYMechas": "Calor y Mechas",
+            "Brushing": "Brushing",
+            "Bohox": "Bohox",
+            "BanioCrema": "Baño de Crema"
         }
     }
 }

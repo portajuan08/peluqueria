@@ -1,7 +1,9 @@
 package com.jp.peluqueria.domain.util;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.jp.peluqueria.domain.Cliente;
 import com.jp.peluqueria.domain.ClienteDTO;
@@ -28,7 +30,16 @@ public class UtilCliente{
 			corteDTO.setTipo_corte(corte.getTipo_corte());
 			cortesDTO.add(corteDTO);
 		}
+		cortesDTO.stream().sorted(new CorteComparator()).collect(Collectors.toSet());
 		clienteDTO.setCortes(cortesDTO);
 		return clienteDTO;
 	}
+	
+	public static class CorteComparator implements Comparator<CorteDTO> {
+		public int compare(CorteDTO c1, CorteDTO c2) {
+			// TODO Auto-generated method stub
+			return c1.getFecha().compareTo(c2.getFecha());
+		}
+	}
+
 }

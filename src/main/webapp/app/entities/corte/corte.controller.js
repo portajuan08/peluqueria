@@ -58,7 +58,7 @@
   		    	//aspectRatio: 3,
   		        defaultView: 'agendaDay',
   		        allDaySlot : false,
-  		        //height: 450,
+  		        height: screen.height - 350,
   		        editable: false,
   		        customButtons: {
   		            agregarCorte: {
@@ -72,7 +72,7 @@
   		        header:{
   		          left: 'agregarCorte',
   		          center: 'title',
-  		          right: 'today month day prev,next',
+  		          right: 'today prev,next',
   		          today : 'Hoy'
   		        },
   				viewRender: $scope.loadAll,

@@ -1,6 +1,6 @@
 package com.jp.peluqueria.repository;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,6 +12,7 @@ import com.jp.peluqueria.domain.Corte;
  */
 public interface CorteRepository extends JpaRepository<Corte,Long> {
 
-	public List<Corte> findByFechas(Date  fechaDesde,Date fechaHasta);
-	public List<Corte> findByDesdeFecha(Date  fechaDesde);
+	public List<Corte> findByFechas(Timestamp  fechaDesde,Timestamp fechaHasta);
+	public List<Corte> findByDesdeFecha(Timestamp  fechaDesde);
+	public List<Corte> findByFechasTipoServicio(Timestamp  fechaDesde,Timestamp fechaHasta, String tipoServicio);
 }

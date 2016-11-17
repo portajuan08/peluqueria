@@ -4,5 +4,5 @@ package com.jp.peluqueria.domain.enumeration;
  * The Tipo_corte enumeration.
  */
 public enum Tipo_corte {
-    Corte,Alisado,Peinado,Keratina
+	Todos,Corte,Peinado,Alisado,Keratina,CorteDama,CorteCaballero,Calor,Mechas,Californianas,Reflejos,CalorYReflejos,CalorYMechas,Brushing,Bohox,BanioCrema
 }

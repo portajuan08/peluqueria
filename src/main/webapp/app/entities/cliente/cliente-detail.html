@@ -1,6 +1,6 @@
 
 <div>
-    <h2><span data-translate="peluqueriaApp.cliente.detail.title">Cliente</span> {{vm.cliente.id}}</h2>
+    <h2><span data-translate="peluqueriaApp.cliente.detail.title">Cliente</span> {{vm.cliente.nombre}} {{vm.cliente.apellido}} </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <uib-tabset active="activeJustified" justified="true">
@@ -46,7 +46,7 @@
 									<label class="control-label"
 										translate="peluqueriaApp.cliente.fecha" for="field_fecha">Fecha</label>
 									<input type="text" class="form-control" name="Fecha"
-										id="field_fecha" ng-model="corte.fecha" readonly />
+										id="field_fecha" ng-model="corte.fecha | date:'medium'" readonly />
 								</div>
 								<div class="form-group col-md-4">
 									<label class="control-label"

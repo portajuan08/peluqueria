@@ -30,7 +30,8 @@ import com.jp.peluqueria.domain.enumeration.Tipo_corte;
 @Document(indexName = "corte")
 @NamedQueries({
 	@NamedQuery(name = "Corte.findByFechas", query = "SELECT c FROM Corte c WHERE LOWER(c.fecha) >= LOWER(?1) and LOWER(c.fecha) <= LOWER(?2)"),
-	@NamedQuery(name = "Corte.findByDesdeFecha", query = "SELECT c FROM Corte c WHERE LOWER(c.fecha) >= LOWER(?1)")
+	@NamedQuery(name = "Corte.findByDesdeFecha", query = "SELECT c FROM Corte c WHERE LOWER(c.fecha) >= LOWER(?1)"),
+	@NamedQuery(name = "Corte.findByFechasTipoServicio", query = "SELECT c FROM Corte c WHERE LOWER(c.fecha) >= LOWER(?1) and LOWER(c.fecha) <= LOWER(?2) and LOWER(c.tipo_corte) = LOWER(?3)")
 })
 public class Corte implements Serializable {
 

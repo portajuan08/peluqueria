@@ -16,6 +16,7 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.clientes = Cliente.query();
+        vm.vacio = " ";
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

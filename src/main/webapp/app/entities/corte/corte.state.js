@@ -50,7 +50,7 @@
             params: {
                 fecha_desde : new Date(),
                 fecha_hasta : new Date(),
-                tipo_corte : "Alisado"
+                tipo_corte : "Todos"
             },
             resolve: {
                 searchParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {

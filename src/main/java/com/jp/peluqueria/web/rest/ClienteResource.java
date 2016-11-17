@@ -129,9 +129,7 @@ public class ClienteResource {
     public ResponseEntity<ClienteDTO> getCliente(@PathVariable Long id) {
         log.debug("REST request to get Cliente : {}", id);
         Cliente cliente = clienteRepository.findOne(id);
-        System.out.println("clientes tamañpo => " + cliente.getCortes().size());
         ClienteDTO clienteDTO = UtilCliente.getClienteDTO(cliente);
-        System.out.println("clientes DTO tamañpo => " + clienteDTO.getCortes().size());
         return Optional.ofNullable(clienteDTO)
             .map(result -> new ResponseEntity<>(
                 result,
